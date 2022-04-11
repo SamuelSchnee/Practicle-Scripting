@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BD93DFD2-5F66-74C8-6BC1-4ECCA49801FD}</ProjectGuid>
+    <ProjectGuid>{BBA757FF-CD7C-6863-8508-265F3BF8AE4F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>fps.Editor</AssemblyName>
@@ -52,9 +52,6 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.1.17f1</UnityVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FPS Kit\FPS\Scripts\Editor\PrefabReplacerEditor.cs" />
     <Compile Include="Assets\FPS Kit\FPS\Scripts\Editor\ShaderBuildStripping.cs" />
@@ -692,19 +689,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="fps.Game.csproj">
-      <Project>{CFF9D9E8-2792-C333-8219-CE54C51676A8}</Project>
+      <Project>{B4B62AAD-9C0C-8CE1-7D5B-7DC6E6733656}</Project>
       <Name>fps.Game</Name>
     </ProjectReference>
     <ProjectReference Include="fps.Gameplay.csproj">
-      <Project>{FD1FBA73-B7FA-7732-B994-CD95BA9A4AB0}</Project>
+      <Project>{93911C3F-3E63-56E4-DDFA-86B435E55A3E}</Project>
       <Name>fps.Gameplay</Name>
     </ProjectReference>
     <ProjectReference Include="fps.AI.csproj">
-      <Project>{95FA9551-6635-BC9C-FE31-CCA65587AE08}</Project>
+      <Project>{3B70279A-07F2-FD22-452F-416F8779CB03}</Project>
       <Name>fps.AI</Name>
     </ProjectReference>
     <ProjectReference Include="fps.UI.csproj">
-      <Project>{51FD19B4-95EF-AB95-A912-66A0031EE989}</Project>
+      <Project>{BF7FE41D-4EF5-3C6C-96DD-2E9FEFEF439D}</Project>
       <Name>fps.UI</Name>
     </ProjectReference>
   </ItemGroup>

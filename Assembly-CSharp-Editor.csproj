@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1485EC76-E270-7C03-C742-AEC49EEAC15B}</ProjectGuid>
+    <ProjectGuid>{52492917-0172-7BD9-E35C-EF149DA6E0A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -52,9 +52,6 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.1.17f1</UnityVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\URP Sample\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
   </ItemGroup>
@@ -797,43 +794,43 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{54429F92-6BEA-13D3-7A3D-38ED9E70CF28}</Project>
+      <Project>{4D7A34A6-CD81-D0A6-7407-98BCBECE5918}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="fps.UI.csproj">
-      <Project>{51FD19B4-95EF-AB95-A912-66A0031EE989}</Project>
+      <Project>{BF7FE41D-4EF5-3C6C-96DD-2E9FEFEF439D}</Project>
       <Name>fps.UI</Name>
     </ProjectReference>
     <ProjectReference Include="fps.Editor.csproj">
-      <Project>{BD93DFD2-5F66-74C8-6BC1-4ECCA49801FD}</Project>
+      <Project>{BBA757FF-CD7C-6863-8508-265F3BF8AE4F}</Project>
       <Name>fps.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="fps.AI.csproj">
-      <Project>{95FA9551-6635-BC9C-FE31-CCA65587AE08}</Project>
+      <Project>{3B70279A-07F2-FD22-452F-416F8779CB03}</Project>
       <Name>fps.AI</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Microgame.Tutorials.csproj">
-      <Project>{C11B77D8-020C-C402-57EC-EB5678D1B47B}</Project>
+      <Project>{ADF135B7-F063-DCA8-1203-9839102975A3}</Project>
       <Name>Unity.Microgame.Tutorials</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.FPS.Tutorials.csproj">
-      <Project>{12E92422-6083-0346-A82E-573AA75B6452}</Project>
+      <Project>{BF062BDF-89FE-6D44-C9D0-E1E594C1F100}</Project>
       <Name>Unity.FPS.Tutorials</Name>
     </ProjectReference>
     <ProjectReference Include="NavMeshComponentsEditor.csproj">
-      <Project>{2D06F8BB-E20E-391A-22C4-6342191961AB}</Project>
+      <Project>{DB3E6D23-8353-3638-59F4-6D4333A0918C}</Project>
       <Name>NavMeshComponentsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="fps.Game.csproj">
-      <Project>{CFF9D9E8-2792-C333-8219-CE54C51676A8}</Project>
+      <Project>{B4B62AAD-9C0C-8CE1-7D5B-7DC6E6733656}</Project>
       <Name>fps.Game</Name>
     </ProjectReference>
     <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{87EDE895-9F94-C543-3DFA-1C685CB9FB6E}</Project>
+      <Project>{E089ED3F-55C0-A75D-B2E0-4685DC4896F2}</Project>
       <Name>NavMeshComponents</Name>
     </ProjectReference>
     <ProjectReference Include="fps.Gameplay.csproj">
-      <Project>{FD1FBA73-B7FA-7732-B994-CD95BA9A4AB0}</Project>
+      <Project>{93911C3F-3E63-56E4-DDFA-86B435E55A3E}</Project>
       <Name>fps.Gameplay</Name>
     </ProjectReference>
   </ItemGroup>
