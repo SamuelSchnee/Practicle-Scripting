@@ -8,6 +8,7 @@ public class Shield : MonoBehaviour
     public bool shieldUnlocked;
     public GameObject shield;
     public bool shieldActive;
+    public GameObject door;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class Shield : MonoBehaviour
         {
             shieldUnlocked = true;
             Destroy(other.gameObject);
+            Destroy(door);
         }
     }
 }
