@@ -321,22 +321,7 @@ namespace Unity.FPS.Gameplay
                         // force the crouch state to false
                         if (SetCrouchingState(false, false))
                         {
-                            // start by canceling out the vertical component of our velocity
-                            CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
-
-                            // then, add the jumpSpeed value upwards
-                            CharacterVelocity += Vector3.up * JumpForce;
-
-                            // play sound
-                            AudioSource.PlayOneShot(JumpSfx);
-
-                            // remember last time we jumped because we need to prevent snapping to ground for a short time
-                            m_LastTimeJumped = Time.time;
-                            HasJumpedThisFrame = true;
-
-                            // Force grounding to false
-                            IsGrounded = false;
-                            m_GroundNormal = Vector3.up;
+                            Jump();
                         }
                     }
 
@@ -473,6 +458,46 @@ namespace Unity.FPS.Gameplay
 
             IsCrouching = crouched;
             return true;
+        }
+
+        void Jump()
+        {
+            // start by canceling out the vertical component of our velocity
+            CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
+
+            // then, add the jumpSpeed value upwards
+            CharacterVelocity += Vector3.up * JumpForce;
+
+            // play sound
+            AudioSource.PlayOneShot(JumpSfx);
+
+            // remember last time we jumped because we need to prevent snapping to ground for a short time
+            m_LastTimeJumped = Time.time;
+            HasJumpedThisFrame = true;
+
+            // Force grounding to false
+            IsGrounded = false;
+            m_GroundNormal = Vector3.up;
+        }
+
+        public void AddForce(Vector3 direction, bool clearVelocity)
+        {
+            // start by canceling out the vertical component of our velocity
+            if(clearVelocity)
+            {
+                CharacterVelocity *= 0;
+            }
+
+            CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
+
+            CharacterVelocity += direction;
+
+            m_LastTimeJumped = Time.time;
+            HasJumpedThisFrame = true;
+
+            // Force grounding to false
+            IsGrounded = false;
+            m_GroundNormal = Vector3.up;
         }
     }
 }

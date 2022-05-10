@@ -131,6 +131,7 @@ namespace Unity.FPS.Game
         bool m_WantsToShoot = false;
 
         public UnityAction OnShoot;
+        public UnityEvent OnShootEvent;
         public event Action OnShootProcessed;
 
         int m_CarriedPhysicalBullets;
@@ -163,7 +164,7 @@ namespace Unity.FPS.Game
 
         private Queue<Rigidbody> m_PhysicalAmmoPool;
 
-        void Awake()
+        public virtual void Awake()
         {
             m_CurrentAmmo = MaxAmmo;
             m_CarriedPhysicalBullets = HasPhysicalBullets ? ClipSize : 0;
@@ -196,9 +197,9 @@ namespace Unity.FPS.Game
             }
         }
 
-        public void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Max(m_CarriedPhysicalBullets + count, MaxAmmo);
+        public virtual void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Max(m_CarriedPhysicalBullets + count, MaxAmmo);
 
-        void ShootShell()
+        public virtual void ShootShell()
         {
             Rigidbody nextShell = m_PhysicalAmmoPool.Dequeue();
 
@@ -212,10 +213,10 @@ namespace Unity.FPS.Game
             m_PhysicalAmmoPool.Enqueue(nextShell);
         }
 
-        void PlaySFX(AudioClip sfx) => AudioUtility.CreateSFX(sfx, transform.position, AudioUtility.AudioGroups.WeaponShoot, 0.0f);
+        public virtual void PlaySFX(AudioClip sfx) => AudioUtility.CreateSFX(sfx, transform.position, AudioUtility.AudioGroups.WeaponShoot, 0.0f);
 
 
-        void Reload()
+        public virtual void Reload()
         {
             if (m_CarriedPhysicalBullets > 0)
             {
@@ -225,7 +226,7 @@ namespace Unity.FPS.Game
             IsReloading = false;
         }
 
-        public void StartReloadAnimation()
+        public virtual void StartReloadAnimation()
         {
             if (m_CurrentAmmo < m_CarriedPhysicalBullets)
             {
@@ -234,7 +235,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        void Update()
+        public virtual void Update()
         {
             UpdateAmmo();
             UpdateCharge();
@@ -247,7 +248,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        void UpdateAmmo()
+        public virtual void UpdateAmmo()
         {
             if (AutomaticReload && m_LastTimeShot + AmmoReloadDelay < Time.time && m_CurrentAmmo < MaxAmmo && !IsCharging)
             {
@@ -274,7 +275,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        void UpdateCharge()
+        public virtual void UpdateCharge()
         {
             if (IsCharging)
             {
@@ -309,7 +310,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        void UpdateContinuousShootSound()
+        public virtual void UpdateContinuousShootSound()
         {
             if (UseContinuousShootSound)
             {
@@ -330,7 +331,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        public void ShowWeapon(bool show)
+        public virtual void ShowWeapon(bool show)
         {
             WeaponRoot.SetActive(show);
 
@@ -342,7 +343,7 @@ namespace Unity.FPS.Game
             IsWeaponActive = show;
         }
 
-        public void UseAmmo(float amount)
+        public virtual void UseAmmo(float amount)
         {
             m_CurrentAmmo = Mathf.Clamp(m_CurrentAmmo - amount, 0f, MaxAmmo);
             m_CarriedPhysicalBullets -= Mathf.RoundToInt(amount);
@@ -350,7 +351,7 @@ namespace Unity.FPS.Game
             m_LastTimeShot = Time.time;
         }
 
-        public bool HandleShootInputs(bool inputDown, bool inputHeld, bool inputUp)
+        public virtual bool HandleShootInputs(bool inputDown, bool inputHeld, bool inputUp)
         {
             m_WantsToShoot = inputDown || inputHeld;
             switch (ShootType)
@@ -390,7 +391,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        bool TryShoot()
+        public virtual bool TryShoot()
         {
             if (m_CurrentAmmo >= 1f
                 && m_LastTimeShot + DelayBetweenShots < Time.time)
@@ -404,7 +405,7 @@ namespace Unity.FPS.Game
             return false;
         }
 
-        bool TryBeginCharge()
+        public virtual bool TryBeginCharge()
         {
             if (!IsCharging
                 && m_CurrentAmmo >= AmmoUsedOnStartCharge
@@ -422,7 +423,7 @@ namespace Unity.FPS.Game
             return false;
         }
 
-        bool TryReleaseCharge()
+        public virtual bool TryReleaseCharge()
         {
             if (IsCharging)
             {
@@ -437,7 +438,19 @@ namespace Unity.FPS.Game
             return false;
         }
 
-        void HandleShoot()
+        public virtual void HandleShoot()
+        {
+            HandleShoot_SpawnProjectiles();
+            HandleShoot_MuzzleFlash();
+            HandleShoot_EjectPhysicalShell();
+            HandleShoot_UpdateLastShotTime();
+            HandleShoot_PlaySFX();
+            HandleShoot_PlayAnimation();
+            HandleShoot_ShootEvents();
+
+        }
+
+        public virtual void HandleShoot_SpawnProjectiles()
         {
             int bulletsPerShotFinal = ShootType == WeaponShootType.Charge
                 ? Mathf.CeilToInt(CurrentCharge * BulletsPerShot)
@@ -451,7 +464,10 @@ namespace Unity.FPS.Game
                     Quaternion.LookRotation(shotDirection));
                 newProjectile.Shoot(this);
             }
+        }
 
+        public virtual void HandleShoot_MuzzleFlash()
+        {
             // muzzle flash
             if (MuzzleFlashPrefab != null)
             {
@@ -465,32 +481,49 @@ namespace Unity.FPS.Game
 
                 Destroy(muzzleFlashInstance, 2f);
             }
+        }
 
+        public virtual void HandleShoot_EjectPhysicalShell()
+        {
             if (HasPhysicalBullets)
             {
                 ShootShell();
                 m_CarriedPhysicalBullets--;
             }
+        }
 
+        public virtual void HandleShoot_UpdateLastShotTime()
+        {
             m_LastTimeShot = Time.time;
+        }
 
+        public virtual void HandleShoot_PlaySFX()
+        {
             // play shoot SFX
             if (ShootSfx && !UseContinuousShootSound)
             {
                 m_ShootAudioSource.PlayOneShot(ShootSfx);
             }
+        }
 
+        public virtual void HandleShoot_PlayAnimation()
+        {
             // Trigger attack animation if there is any
             if (WeaponAnimator)
             {
                 WeaponAnimator.SetTrigger(k_AnimAttackParameter);
             }
+        }
 
+        public virtual void HandleShoot_ShootEvents()
+        {
             OnShoot?.Invoke();
+            OnShootEvent.Invoke();
             OnShootProcessed?.Invoke();
         }
 
-        public Vector3 GetShotDirectionWithinSpread(Transform shootTransform)
+
+        public virtual Vector3 GetShotDirectionWithinSpread(Transform shootTransform)
         {
             float spreadAngleRatio = BulletSpreadAngle / 180f;
             Vector3 spreadWorldDirection = Vector3.Slerp(shootTransform.forward, UnityEngine.Random.insideUnitSphere,

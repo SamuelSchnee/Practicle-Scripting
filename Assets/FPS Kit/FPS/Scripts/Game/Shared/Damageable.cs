@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Unity.FPS.Game
 {
@@ -11,6 +12,8 @@ namespace Unity.FPS.Game
         public float SensibilityToSelfdamage = 0.5f;
 
         public Health Health { get; private set; }
+
+        public UnityEvent OnDamaged;
 
         void Awake()
         {
@@ -43,6 +46,8 @@ namespace Unity.FPS.Game
                 // apply the damages
                 Health.TakeDamage(totalDamage, damageSource);
             }
+
+            OnDamaged.Invoke();
         }
     }
 }

@@ -23,7 +23,7 @@ public class JumpTrigger : MonoBehaviour
         {
             PlayerCharacterController controller = other.gameObject.GetComponent<PlayerCharacterController>();
 
-            //controller.AddForce(Vector3.up * 10 + Vector3.forward * 10, true);
+            controller.AddForce(Vector3.up * 10 + Vector3.forward * 10, true);
         }
     }
 }

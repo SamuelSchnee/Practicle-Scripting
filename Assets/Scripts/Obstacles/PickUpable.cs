@@ -2,45 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
-public class PickUpable : MonoBehaviour
+public class Pickupable : MonoBehaviour
 {
-    Rigidbody body;
     Collider collider;
+    Rigidbody body;
 
-    public bool dropPickup;
+    Transform holdLocation;
+
+    PlayerPickup holder;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider>();
-        body = GetComponent<Rigidbody>();
+        collider = gameObject.GetComponent<Collider>();
+        body = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void Pickup()
+    public void Pickup(GameObject sender)
     {
-        body.isKinematic = true;
-        collider.isTrigger = true;
+        if (holder == null)
+        {
+            body.isKinematic = true;
+            collider.isTrigger = true;
+
+            holder = sender.GetComponent<PlayerPickup>();
+            holder.PickupObject(gameObject);
+        }
+        else
+        {
+            Drop();
+        }
     }
 
     public void Drop()
     {
-        collider.isTrigger = false;
         body.isKinematic = false;
+        collider.isTrigger = false;
 
-        dropPickup = false;
+        holder.DropObject();
+        holder = null;
     }
 
-   /* private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit something");
-        dropPickup = true;
-    }*/
+        if(holder != null)
+        {
+            Drop();
+        }
+
+    }
+
+
 }
