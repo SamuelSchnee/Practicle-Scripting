@@ -22,8 +22,10 @@ public class PressurePlateControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Stepped On");
-        OnPressedEvent.Invoke();
+        if (other.gameObject.tag == "Box")
+        {
+            OnPressedEvent.Invoke();
+        }
     }
 
     private void OnTriggerStay(Collider other)

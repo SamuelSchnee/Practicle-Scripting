@@ -55,16 +55,28 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Obstacles\CannonBall.cs" />
     <Compile Include="Assets\Scripts\LaserControl.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\PuzzleController_Ordered.cs" />
     <Compile Include="Assets\Scripts\DoorControl.cs" />
     <Compile Include="Assets\Scripts\DeathTrapControl.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponController_Sniper.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Fighter.cs" />
     <Compile Include="Assets\Scripts\PressurePlateControl.cs" />
     <Compile Include="Assets\Scripts\Obstacles\TeleporterController.cs" />
     <Compile Include="Assets\Scripts\CannonController.cs" />
     <Compile Include="Assets\Scripts\Obstacles\JumpTrigger.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\Interactable.cs" />
     <Compile Include="Assets\Scripts\DetectionScript.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerTest.cs" />
     <Compile Include="Assets\URP Sample\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\Teleporter.cs" />
     <Compile Include="Assets\Scripts\Obstacles\Shield.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\ColorChange.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\Button.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPickup.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\Puzzle.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\PuzzleController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\URP Sample\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Obstacles\BouncePlatform.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPush.cs" />
@@ -72,24 +84,14 @@
     <Compile Include="Assets\Scripts\PlateController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerTeleport.cs" />
     <Compile Include="Assets\Scripts\CubeMovement.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\Teleportable.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\Pickupable.cs" />
     <Compile Include="Assets\Scripts\ObstacleMoveControl.cs" />
     <Compile Include="Assets\Scripts\Obstacles\DamagePowerup.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\Obstacles\Teleporter.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\PuzzleController.cs" />
-    <Compile Include="Assets\Scripts\Obstacles\Pickupable.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
-    <Compile Include="Assets\Scripts\Weapons\WeaponController_Sniper.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\Button.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\PuzzleController_Ordered.cs" />
-    <Compile Include="Assets\Scripts\Obstacles\Interactable.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Fighter.cs" />
     <Compile Include="Assets\Scripts\Enemy\Mage.cs" />
-    <Compile Include="Assets\Scripts\Obstacles\Teleportable.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\Puzzle.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerTest.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\ColorChange.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\BounceTeleport.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\ShootToMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FPS Kit\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
